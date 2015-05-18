@@ -215,7 +215,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			} else {
 				// if image object is not returned from gallery object then 
 				//		user specified wrong imageID -> SHOW NOTHING!
-				// ToDo 150319: Message about wrong gallery object
+				// ToDo 150319: Message about wrong gallery object  ??
 				return false;
 			}
 			
@@ -231,10 +231,10 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 				
 				// start output buffer (turn output buffering on)
 				ob_start(); 
-					// output content
-					echo $output;
-					// apply buffer to var (get contents of output buffer without clearing it)
-					$display_output = ob_get_contents(); 
+				// output content
+				echo $output;
+				// apply buffer to var (get contents of output buffer without clearing it)
+				$display_output = ob_get_contents(); 
 				// close buffer and clean up
 				ob_end_clean();
 				// return output content buffer
