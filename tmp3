@@ -20,30 +20,16 @@
 	</languages>
 
 	<config>
-		<fields 
-			name="params">
-			<fieldset 
-				name="basic">
-				<field 
-					name="popup_style" 
-					type="list" 
-					default="normal_popup" 
-					label="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_POPUP_STYLE_LABEL" 
-					description="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_POPUP_STYLE_DESCRIPTION">
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="popup_style" type="list" default="normal_popup" label="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_POPUP_STYLE_LABEL" description="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_POPUP_STYLE_DESCRIPTION">
 					<option value="no_popup">PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_NO_POPUP</option>
 					<option value="use_link">PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_USE_LINK</option>
 					<option value="normal_popup">PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_NORMAL_POPUP</option>
 					<option value="modal">PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_MODAL</option>
 					<option value="highslide">PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_HIGHSLIDE</option>
 				</field>
-
-				<field 
-					name="debug" 
-					type="radio" 
-					class="btn-group btn-group-yesno" 
-					default="0" 
-					label="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_DEBUG_LABEL" 
-					description="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_DEBUG_DESCRIPTION">
+				<field name="debug" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_DEBUG_LABEL" description="PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_DEBUG_DESCRIPTION">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
