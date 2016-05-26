@@ -2,10 +2,10 @@
 <extension version="3.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY</name>
 	<author>Jonathan DeLaigle, Radek Kafka, Mirjam Kaizer,RSGallery2 Team</author>
-	<creationDate>10 Jan. 2015</creationDate>
-	<copyright>(C) 2007 Jonathan DeLaigle. 2010 Radek Kafka. 2011-2015 RSGallery2 Team. All rights reserved.</copyright>
+	<creationDate>10 Jan. 2016</creationDate>
+	<copyright>(C) 2007 Jonathan DeLaigle. 2010 Radek Kafka. 2011-2016 RSGallery2 Team. All rights reserved.</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-	<authorUrl>www.rsgallery2.nl</authorUrl>
+	<authorUrl>www.rsgallery2.org</authorUrl>
 	<version>3.2.1</version>
 	<description>PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_XML_DESCRIPTION</description>
 
