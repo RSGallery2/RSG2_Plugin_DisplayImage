@@ -490,10 +490,11 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 	 * @param string $attrib
 	 * @return string
 	 */
-	function bot_rsg2_singledisplay_clean_data ( $attrib ) {
-		$attrib = str_replace( "&nbsp;", '', "$attrib" );
-
-		return trim( $attrib );
+	function bot_rsg2_singledisplay_clean_data ( $attributeIn ) {
+		$attribute = str_replace( "&nbsp;", '', "$attributeIn" );
+		// $attribute = trim ($attribute); // surprisingly only one blank removed
+		$attribute = preg_replace('/\s/u', '', $attribute); // '/u' -> unicode
+		return $attribute;
 	}
 	
 	/**
