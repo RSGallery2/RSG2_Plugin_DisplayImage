@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>team@rsgallery2.org</authorEmail>
 	<authorUrl>www.rsgallery2.org</authorUrl>
-	<version>4.0.1</version>
+	<version>4.0.3</version>
 	<description>PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_XML_DESCRIPTION</description>
 
 	<files>
@@ -52,5 +52,12 @@
 			</fieldset>
 		</fields>
 	</config>
+	
+	<updateservers>
+		<server type="extension"
+		        priority="1"
+		        name="Github RSGallery2 plugin gallery display updates">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayImage/raw/master/update.xml
+		</server>
+	</updateservers>
 </extension>
 
