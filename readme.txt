@@ -1,4 +1,4 @@
-RSGallery2 Single Image Display plugin
+RSGallery2 Display Image plugin (Single Display)
 This plugin will replace {rsg2_singledisplay: imageid, size, caption, format, clearfloat} in articles with the corresponding RSGallery2 image.
 
     imageid: Backend > Components > RSGallery2 > Items: use the number from the ID column (required).

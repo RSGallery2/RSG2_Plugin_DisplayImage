@@ -31,12 +31,14 @@ Legend:
 - -> Removed
 ! -> Note
 
-* --- 4.0.3 --- 2018-06-06 --- whazzup ------------------------------
+* --- 4.0.2 --- 2018-06-06 --- whazzup ------------------------------
 
 ^ Pathes to files now written with slashes '../.../...' instead of '...' . DS . '...'
 + Added updateserver file
 
-* --- 4.0.2 --- 2015-03-19 --- whazzup ------------------------------
+* --- 3.2.1 --- 2015-04-26 --- whazzup ------------------------------
+
+! Released version "plugin_rsgallery2_displaysingle Version 3.2.1 J3x"
 
 2015-03-19 finnern - SVN ...
 + Added try and catch with error messages

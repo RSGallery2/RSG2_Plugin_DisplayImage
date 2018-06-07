@@ -2,12 +2,12 @@
 <extension version="3.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY</name>
 	<author>Jonathan DeLaigle, Radek Kafka, Mirjam Kaizer, RSGallery2 Team</author>
-	<creationDate>21 May 2017</creationDate>
+	<creationDate>07 Jun 2018</creationDate>
 	<copyright>(C) 2007 Jonathan DeLaigle. 2010 Radek Kafka. 2011-2018 RSGallery2 Team. All rights reserved.</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>team@rsgallery2.org</authorEmail>
 	<authorUrl>www.rsgallery2.org</authorUrl>
-	<version>4.0.3</version>
+	<version>4.0.2</version>
 	<description>PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_XML_DESCRIPTION</description>
 
 	<files>
@@ -56,7 +56,7 @@
 	<updateservers>
 		<server type="extension"
 		        priority="1"
-		        name="Github RSGallery2 plugin gallery display updates">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayImage/raw/master/update.xml
+		        name="Github RSGallery2 plugin display image">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayImage/raw/master/update.xml
 		</server>
 	</updateservers>
 </extension>
