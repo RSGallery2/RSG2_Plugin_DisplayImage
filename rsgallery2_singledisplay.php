@@ -104,7 +104,8 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 		try {
 			// Initialize RSGallery2 
 			//require_once( JPATH_BASE.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
-			require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
+			//require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
+			require_once( JPATH_ADMINISTRATOR.'/components/com_rsgallery2/init.rsgallery2.php' );
 						
 			$Rsg2DebugActive = $rsgConfig->get('debug');
 			if ($Rsg2DebugActive || $this->debug)
