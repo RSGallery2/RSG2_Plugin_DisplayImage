@@ -1,7 +1,11 @@
 <?php
 /**
-* @version $Id:$
-* @package RSGallery2
+ * RSGallery2 Gallery display plugin
+ * This plugin supports the display of a single image  in an article
+ *
+ * @package RSGallery2
+ * @subpackage	Content plugin
+ * @copyright	Copyright (C) 2011-2018 RSGallery2 Team
 * @copyright Copyright (C) 2007 Jonathan DeLaigle. (plugin for Joomla 1.0.x.)
 * @copyright Copyright (C) 2010 Radek Kafka. (Migration of plugin to Joomla 1.5.x and addition of Highslide using Highslide JS for Joomla plugin)
 * @copyright Copyright (C) 2011 RSGallery2 Team. (Addition of popup options and the popup styles: No popup, Normal popup, Joomla Modal. Code slightly re-arranged.)
@@ -19,17 +23,17 @@
 *	 clearfloat: both, left, right (clears float after image with extra div with style clear:both/left/right) or false for no added div
 */
 
-
-// Ensure this file is being included by a parent file
-defined( '_JEXEC' ) or die();
+// No direct access
+defined( '_JEXEC' ) or die('');
 
 class plgContentrsgallery2_singledisplay extends JPlugin {
 	
 	var $popup_style	= 'normal_popup';
-	var $debug			= 0;
+	var $debugActive			= 0;
 
     /**
      * Load the language file on instantiation
+     *
      * @var    boolean
      * @since  3.1 Joomla
      */
@@ -37,11 +41,13 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 
 	/**
 	 * Constructor
+	 *
 	 * Left out intentionally
 	 * ToDo: Check if standard parameter shall be loaded here (rsgallery2_singledisplay_parameters)
 	 * @access      protected
 	 * @param       object  $subject The object to observe
 	 * @param       array   $config  An array that holds the plugin configuration
+     *
 	 * @since       1.5
 	 *
 	public function __construct(& $subject, $config)
@@ -55,15 +61,19 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 	 * @param	string	$context The context of the content being passed to the plugin.
 	 * @param	object	$article The article object.  Note $article->text is also available
 	 * @param	object	$params The article params
-	 * @param	int		$page The 'page' number
+	 * @param	int		$page The 'page' number ($limitstart)
      * @return	bool
+     *
+     * @since       3.x
 	 */
 	public function onContentPrepare($context, &$article, &$params, $page = 0) {
-		// Simple performance check to determine whether bot should process further.
+
+		// Simple high performance check to determine whether bot should process further.
 		if (JString::strpos($article->text, 'rsg2_singledisplay') === false) {
 			// 150319 old: return true;
 			return false;
 		}
+
 		try {
 			// Get the parameters
 			// ToDo 150319: Check if they should be read in the constructor once ?
@@ -81,19 +91,19 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			$app->enqueueMessage($msg,'error');			
 			return false;
 		}
+
 		return true;
 	}	
 
 	/**
 	 * Replaces the matched tags with image html output
 	 *
-	 * @param	array	$matches An array of matches
-	 * @return	string
+	 * @param	array	$matches An array of matches (see preg_match_all)
+     * @return bool|string
+     * @throws Exception
 	 */
 	protected function _replacer( $matches ) {
 		global $rsgConfig;
-
-		// 150318 old: $app = JFactory::getApplication();
 
 		if( ! $matches ) 
 		{
@@ -101,14 +111,18 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 		}
 
         $app = JFactory::getApplication();
+
 		try {
+			//
+            $this->debugActive = $this->params->get('debug', '0');
+
 			// Initialize RSGallery2 
 			//require_once( JPATH_BASE.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
 			//require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
 			require_once( JPATH_ADMINISTRATOR.'/components/com_rsgallery2/init.rsgallery2.php' );
 						
 			$Rsg2DebugActive = $rsgConfig->get('debug');
-			if ($Rsg2DebugActive || $this->debug)
+			if ($Rsg2DebugActive || $this->debugActive)
 			{
 				// Include the JLog class.
 				jimport('joomla.log.log');
@@ -138,16 +152,16 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			//----------------------------------------------------------------
 			// Get attributes from matches and create "clean" array from them
 			//----------------------------------------------------------------
-			$attribs = explode( ',',$matches[1] );
+			$attribs = explode (',', $matches[1]);
 			if ( is_array( $attribs ) ) {
 				$clean_attribs = array ();
-				foreach ( $attribs as $attrib ) {
-					// Remove spaces (&nbsp;) from attributes and trim whith space
-					$clean_attrib = $this->bot_rsg2_singledisplay_clean_data ( $attrib );
+				foreach ( $attribs as $attribute ) {
+					// Remove spaces (&nbsp;) from attributes and trim with space
+					$clean_attrib = $this->plg_rsg2_clean_string ( $attribute );
 					array_push( $clean_attribs, $clean_attrib );
 				}
 			} else {
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::_('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_NOT_AN_ARRAY');
 					$app->enqueueMessage($msg,'message');
 				}
@@ -189,7 +203,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			// No (numerid) image id
 			} else {
 				// if nothing is set then the User did not use bot correctly SHOW NOTHING!
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_ITEM_ID_NOT_NUMERIC',$clean_attribs[0]);
 					$app->enqueueMessage($msg,'message');
 				}
@@ -486,12 +500,12 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 	}
 
 	/**
-	 * Remove spaces (&nbsp;) from attributes and trim whith space
+	 * Remove spaces (&nbsp;) from attributes and trim white space
 	 *
-	 * @param string $attrib
+	 * @param string $attributeIn
 	 * @return string
 	 */
-	function bot_rsg2_singledisplay_clean_data ( $attributeIn ) {
+	function plg_rsg2_clean_string ( $attributeIn ) {
 		$attribute = str_replace( "&nbsp;", '', "$attributeIn" );
 		// $attribute = trim ($attribute); // surprisingly only one blank removed
 		$attribute = preg_replace('/\s/u', '', $attribute); // '/u' -> unicode
@@ -510,9 +524,9 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 		//	$pluginParams = new JParameter( $plugin->params );
 		//
 		//	$this->popup_style = $pluginParams->get('popup_style', 'normal_popup');
-		//	$this->debug = $pluginParams->get('debug', '0');
+		//	$this->debugActive = $pluginParams->get('debug', '0');
 		$this->popup_style = $this->params->get('popup_style', 'normal_popup');
-		$this->debug = $this->params->get('debug', '0');
+		$this->debugActive = $this->params->get('debug', '0');
 
 		return;
 	}	
@@ -536,7 +550,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 
 			//Check: are there results with this id?
 			if(!isset($details)) {
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_ITEM_ID_NOT_FOUND',$image_id);
 					$app->enqueueMessage($msg,'message');
 				}
@@ -544,7 +558,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			}
 			//Check image is published (the RSG2 classes won't allow to show unpublished items)
 			if (!$details['item_published']){
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_ITEM_UNPUBLISHED',$details['item_title'],$image_id);
 					$app->enqueueMessage($msg,'message');
 				}
@@ -552,7 +566,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			}
 			//Check image gallery is published (depending on parameter)
 			if (!$details['gallery_published']){
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_GALLERY_UNPUBLISHED',$details['gallery_name'],$image_id);
 					$app->enqueueMessage($msg,'message');
 				}
@@ -563,7 +577,7 @@ class plgContentrsgallery2_singledisplay extends JPlugin {
 			$groups	= $user->getAuthorisedViewLevels();
 			$access = in_array($details['gallery_access'], $groups);
 			if (!$access){
-				if ($this->debug) {
+				if ($this->debugActive) {
 					$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_SINGLEDISPLAY_NO_ACCESS_TO_GALLERY',$details['gallery_name'],$details['item_title'],$image_id);
 					$app->enqueueMessage($msg,'message');
 				}
