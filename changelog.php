@@ -5,7 +5,7 @@
 * @copyright Copyright (C) 2007 Jonathan DeLaigle. (plugin for Joomla 1.0.x.)
 * @copyright Copyright (C) 2010 Radek Kafka. (Migration of plugin to Joomla 1.5.x and addition of Highslide using Highslide JS for Joomla plugin)
 * @copyright Copyright (C) 2011 RSGallery2 Team. (Addition of popup options and the popup styles: No popup, Normal popup, Joomla Modal. Code slightly re-arranged.)
-* @copyright Copyright (C) 2012-2018 RSGallery2 Team. (Code changed for Joomla 2.5 and addition of clearfloat and modal behaviour)
+* @copyright Copyright (C) 2012-2019 RSGallery2 Team. (Code changed for Joomla 2.5 and addition of clearfloat and modal behaviour)
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.php
 * Usage example: {rsg2_singledisplay:9999,thumb,true,left;float:left,both}
 *	 imageid: Backend > Components > RSGallery2 > Items: use the number from the ID column.

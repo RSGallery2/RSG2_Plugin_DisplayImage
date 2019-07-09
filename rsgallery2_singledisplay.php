@@ -5,7 +5,7 @@
  *
  * @package RSGallery2
  * @subpackage	Content plugin
- * @copyright	Copyright (C) 2011-2018 RSGallery2 Team
+ * @copyright	Copyright (C) 2011-2019 RSGallery2 Team
 * @copyright Copyright (C) 2007 Jonathan DeLaigle. (plugin for Joomla 1.0.x.)
 * @copyright Copyright (C) 2010 Radek Kafka. (Migration of plugin to Joomla 1.5.x and addition of Highslide using Highslide JS for Joomla plugin)
 * @copyright Copyright (C) 2011 RSGallery2 Team. (Addition of popup options and the popup styles: No popup, Normal popup, Joomla Modal. Code slightly re-arranged.)
