@@ -89,8 +89,7 @@
 	<tstamp>
 		<format property="date.year" pattern="%Y" />
 	</tstamp>
-	
-	
+		
 	<!-- 
 	.........................................................................
 	folders
@@ -220,7 +219,7 @@
 			<filterchain>
 				<replaceregexp>
 
-					<regexp pattern="@since(?=\s*$)" replace="@since X ${build.version}" />
+					<regexp pattern="@since(?=\s*$)" replace="@since ${build.version}" />
 					
 					 
 				</replaceregexp>
